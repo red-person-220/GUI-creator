@@ -1,4 +1,4 @@
-import sys, new, test_data_given_by
+import sys, new, test_data_given_by, execute
 
 if __name__ == '__main__':
     arguments = sys.argv[1:]
@@ -6,7 +6,10 @@ if __name__ == '__main__':
     test_data_given_by.command(arguments)
 
     if arguments[0] == 'new':
-        # Quitar la funcion main y hacerlo directamente aqui chuparla
-        new.main(arguments=arguments[1:])
+        if arguments[1] == 'project':
+            new.project(name=arguments[2])
+        elif arguments[1] == 'package':
+            new.package(name=arguments[2], url=arguments[3])
     elif arguments[0] == 'execute':
-        pass #TODO
+        test_data_given_by.file(name_file=arguments[1])
+        execute.file(arguments[1])

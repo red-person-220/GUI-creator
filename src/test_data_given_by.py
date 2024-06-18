@@ -4,7 +4,7 @@ def command(arguments):
         exit()
 
     elif not len(arguments) > 1:
-        print(f'Command Error: Expect function of the command try this: GUIC {arguments[0]} help')
+        print('Command Error: Expect function of the command')
         exit()
 
     #TODO pass to json
@@ -18,6 +18,7 @@ def command(arguments):
 
     i = 0
 
+    """
     for function in functions:
         if arguments[0] == function['name']:
             i = 1
@@ -31,3 +32,7 @@ def command(arguments):
     if i == 0:
         print('Command Error: Unknown command')
         exit()
+    """
+
+def file(name_file):
+    return #TODO
