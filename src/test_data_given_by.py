@@ -1,38 +1,44 @@
+import os, requests
+
 def command(arguments):
     if not len(arguments) > 0:
         print('Command Error: None argument given')
         exit()
 
-    elif not len(arguments) > 1:
-        print('Command Error: Expect function of the command')
+    if not arguments[0] in ['project', 'packpage']:
+        print('Command Error: Argument given unknown')
         exit()
 
-    #TODO pass to json
-    functions = {
-        'new' : {
-            'project' : 1,
-            'package' : 2,
-            'help' : 0
-        }
-    }
-
-    i = 0
-
-    """
-    for function in functions:
-        if arguments[0] == function['name']:
-            i = 1
-
-            j = 0
-
-            #TODO see if the arguments have the number of elements need for every function of the argument
-            #TODO test if the type of the arguments is correct
-            #TODO do the same with the variable i
-
-    if i == 0:
-        print('Command Error: Unknown command')
+    if not len(arguments) > 1:
+        print(f'Command Error: None function given for the argument "{arguments[0]}"')
         exit()
-    """
+    
+    if not len(arguments) > 2:
+        print(f'Command Error: None name given for the function "{arguments[1]}"')
+        exit()
+
+    if arguments[0] == 'package':
+        if not len(arguments) == 4:
+            print('Command Error: There are not enough arguments. Example: GUIC new packpage "name_user" "name_project" "name_branch"')
+            exit()
+
+        url = f"https://github.com/{arguments[2]}/{arguments[3]}/archive/{arguments[4]}.zip"
+
+        try:
+            response = requests.head(url)
+
+            if response.status_code == 200:
+                pass
+            else:
+                print('Command Error: Url make by the data you give dont find. Example: GUIC new packpage "name_user" "name_project" "name_branch"')
+                exit()
+        except requests.ConnectionError:
+            print('Command Error: Url make by the data you give dont find. Example: GUIC packpage "name_user" "name_project" "name_branch"')
+            exit()
+    else:
+        if os.path.isdir(arguments[2]):
+            print('Command Error: The folder already exists')
+            exit()
 
 def file(name_file):
     return #TODO
