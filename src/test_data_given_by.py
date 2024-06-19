@@ -10,11 +10,7 @@ def command(arguments):
         exit()
 
     if not len(arguments) > 1:
-        print(f'Command Error: None function given for the argument "{arguments[0]}"')
-        exit()
-    
-    if not len(arguments) > 2:
-        print(f'Command Error: None name given for the function "{arguments[1]}"')
+        print(f'Command Error: None name given')
         exit()
 
     if arguments[0] == 'package':
@@ -22,7 +18,7 @@ def command(arguments):
             print('Command Error: There are not enough arguments. Example: GUIC new packpage "name_user" "name_project" "name_branch"')
             exit()
 
-        url = f"https://github.com/{arguments[2]}/{arguments[3]}/archive/{arguments[4]}.zip"
+        url = f"https://github.com/{arguments[1]}/{arguments[2]}/archive/{arguments[3]}.zip"
 
         try:
             response = requests.head(url)
@@ -36,7 +32,7 @@ def command(arguments):
             print('Command Error: Url make by the data you give dont find. Example: GUIC packpage "name_user" "name_project" "name_branch"')
             exit()
     else:
-        if os.path.isdir(arguments[2]):
+        if os.path.isdir(arguments[1]):
             print('Command Error: The folder already exists')
             exit()
 
