@@ -1,40 +1,33 @@
+"""
+    This file check if the command create by the user can be use to execute this program
+"""
+
 import os, requests
 
 def command(arguments):
     if not len(arguments) > 0:
-        print('Command Error: None argument given')
-        exit()
+        return 'Command Error: None argument given'
 
-    if not arguments[0] in ['project', 'packpage']:
-        print('Command Error: Argument given unknown')
-        exit()
+    if not arguments[0] in ['project', 'package']:
+        return 'Command Error: Argument given unknown'
 
     if not len(arguments) > 1:
-        print(f'Command Error: None name given')
-        exit()
+        return 'Command Error: None name given'
 
     if arguments[0] == 'package':
-        if not len(arguments) == 4:
-            print('Command Error: There are not enough arguments. Example: GUIC new packpage "name_user" "name_project" "name_branch"')
-            exit()
+        if not len(arguments) == 3:
+            return 'Command Error: There are not enough arguments. Example: GUIC packpage "name_user" "name_project" "name_branch"'
 
-        url = f"https://github.com/{arguments[1]}/{arguments[2]}/archive/{arguments[3]}.zip"
-
-        try:
-            response = requests.head(url)
-
-            if response.status_code == 200:
-                pass
-            else:
-                print('Command Error: Url make by the data you give dont find. Example: GUIC new packpage "name_user" "name_project" "name_branch"')
-                exit()
-        except requests.ConnectionError:
-            print('Command Error: Url make by the data you give dont find. Example: GUIC packpage "name_user" "name_project" "name_branch"')
-            exit()
+        #url = f"https://github.com/{arguments[1]}/{arguments[2]}/archive/{arguments[3]}.zip"
+    
+        if not os.path.isdir('package'):
+            return 'Command Error: package folder do not find'
+        
+        if not os.path.isfile('package.json'):
+            return 'Command Error: package.json do not find'
     else:
         if os.path.isdir(arguments[1]):
-            print('Command Error: The folder already exists')
-            exit()
+            return 'Command Error: The folder already exists'
 
 def file(name_file):
     return #TODO
