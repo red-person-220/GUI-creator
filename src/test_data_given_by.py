@@ -2,7 +2,7 @@
     This file check if the command create by the user can be use to execute this program
 """
 
-import os, requests
+import os
 
 def command(arguments):
     if not len(arguments) > 0:
