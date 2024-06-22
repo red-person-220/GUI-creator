@@ -1,6 +1,3 @@
-# Index
-<!--TODO-->
-
 # GUI Creator
 ## Logo
 ![Logo](photos/logo.ico)
