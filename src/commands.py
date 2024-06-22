@@ -15,8 +15,5 @@ def project(name):
 
     os.mkdir(f'{name}/package')
 
-def package(name_user, name_project):
-    return #TODO pensar como hacer para que funcione
-
 def execute(name_file):
     return #TODO
